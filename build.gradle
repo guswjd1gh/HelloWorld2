@@ -1,0 +1,44 @@
+buildscript{
+    ext{
+        springBootVersion='2.1.7.RELEASE'
+    }
+    repositories{
+        mavenCentral()
+        jcenter()
+    }
+    dependencies{
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+
+
+}
+
+plugins {
+    id 'java'
+    id 'eclipse'
+    //아래 두개는 버전을 명시해줘야 오류 안남.
+    id 'org.springframework.boot' version '2.4.4'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+//순서 중요 plugins랑 buildscript가 제일 위에 여야 함.
+group 'com.jojoldu.book'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    //gradle 7version에서는 compile, testcompile 없음.
+    //대신 implementation, testImplementaion 써야함.
+    implementation ('org.springframework.boot:spring-boot-starter-web')
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
